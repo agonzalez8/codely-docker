@@ -8,8 +8,8 @@ RUN npm install
 
 # Then we copy over the modules from above onto a `slim` image
 FROM mhart/alpine-node:slim-12
-
-COPY --from=0 . .
-COPY . .
+RUN mkdir app
 WORKDIR app
+COPY --from=0 ./app .
+COPY ./app .
 CMD ["node", "index.js"]
